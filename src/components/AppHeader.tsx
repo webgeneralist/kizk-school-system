@@ -12,6 +12,7 @@ const NAV_LINKS: { href: string; label: string }[] = [
   { href: "/levels", label: "科目レベル" },
   { href: "/hs-reports", label: "高校レポート" },
   { href: "/messages", label: "連絡・メッセージ" },
+  { href: "/daily-reports", label: "保護者向け日次レポート" },
   { href: "/reports", label: "月次レポート送信" },
   { href: "/todos", label: "やることリスト" },
   { href: "/sns", label: "SNS投稿ネタ" },
