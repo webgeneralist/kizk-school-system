@@ -54,6 +54,15 @@ export async function updateStudent(id: number, formData: FormData) {
   redirect("/students");
 }
 
+export async function issueMypageToken(formData: FormData) {
+  const id = Number(formData.get("id"));
+  const supabase = await createClient();
+  const token = crypto.randomUUID().replace(/-/g, "");
+
+  await supabase.from("students").update({ mypage_token: token }).eq("id", id);
+  revalidatePath("/students");
+}
+
 export async function deleteStudent(formData: FormData) {
   const id = Number(formData.get("id"));
   const supabase = await createClient();

@@ -54,6 +54,9 @@ export default async function HsReportsPage() {
                   </td>
                   <td className="px-4 py-2">
                     <div className="flex gap-2">
+                      <a href={`/hs-reports/${r.id}`} className="text-xs text-indigo-600 hover:underline">
+                        OCR/AI編集
+                      </a>
                       {r.status !== "done" && (
                         <form action={markDone}>
                           <input type="hidden" name="id" value={r.id} />

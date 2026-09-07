@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
-import { deleteStudent } from "./actions";
+import { deleteStudent, issueMypageToken } from "./actions";
 import DeleteButton from "./DeleteButton";
 import AppHeader from "@/components/AppHeader";
 
@@ -22,7 +22,7 @@ export default async function StudentsPage({
 
   let query = supabase
     .from("students")
-    .select("id, department, name, name_kana, school_grade, school_class, guardian_name, guardian_phone")
+    .select("id, department, name, name_kana, school_grade, school_class, guardian_name, guardian_phone, mypage_token")
     .order("id", { ascending: true });
 
   if (dept === "小中等部" || dept === "高等部") {
@@ -135,6 +135,7 @@ export default async function StudentsPage({
                 <th className="px-4 py-2 text-left">学年・クラス</th>
                 <th className="px-4 py-2 text-left">保護者</th>
                 <th className="px-4 py-2 text-left">保護者連絡先</th>
+                <th className="px-4 py-2 text-left">マイページ</th>
                 <th className="px-4 py-2 text-left">操作</th>
               </tr>
             </thead>
@@ -157,6 +158,24 @@ export default async function StudentsPage({
                   <td className="px-4 py-2">{s.guardian_name ?? "—"}</td>
                   <td className="px-4 py-2">{s.guardian_phone ?? "—"}</td>
                   <td className="px-4 py-2">
+                    {s.mypage_token ? (
+                      <a
+                        href={`/mypage/${s.mypage_token}`}
+                        target="_blank"
+                        className="text-xs text-indigo-600 hover:underline"
+                      >
+                        URLを開く
+                      </a>
+                    ) : (
+                      <form action={issueMypageToken}>
+                        <input type="hidden" name="id" value={s.id} />
+                        <button type="submit" className="text-xs text-indigo-600 hover:underline">
+                          URL発行
+                        </button>
+                      </form>
+                    )}
+                  </td>
+                  <td className="px-4 py-2">
                     <div className="flex gap-2">
                       <a
                         href={`/students/${s.id}/edit`}
@@ -174,7 +193,7 @@ export default async function StudentsPage({
               ))}
               {students?.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
+                  <td colSpan={8} className="px-4 py-8 text-center text-gray-400">
                     該当する生徒が見つかりません
                   </td>
                 </tr>

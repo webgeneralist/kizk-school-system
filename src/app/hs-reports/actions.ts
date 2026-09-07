@@ -24,6 +24,22 @@ export async function createHsReport(formData: FormData) {
   revalidatePath("/hs-reports");
 }
 
+export async function updateReportContent(formData: FormData) {
+  // Claude Codeが原稿をOCR・整理した結果をここに書き込む運用を想定。
+  const id = Number(formData.get("id"));
+  const supabase = await createClient();
+  await supabase
+    .from("hs_reports")
+    .update({
+      ocr_text: str(formData, "ocr_text"),
+      ai_answer: str(formData, "ai_answer"),
+      ai_processed_at: new Date().toISOString(),
+    })
+    .eq("id", id);
+  revalidatePath("/hs-reports");
+  revalidatePath(`/hs-reports/${id}`);
+}
+
 export async function markDone(formData: FormData) {
   const id = Number(formData.get("id"));
   const supabase = await createClient();
