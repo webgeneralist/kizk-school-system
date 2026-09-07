@@ -62,6 +62,7 @@ export default async function StudentsPage({
         </div>
         <div className="flex items-center gap-4">
           <a href="/attendance" className="text-sm underline opacity-90">出欠管理</a>
+          <a href="/schools" className="text-sm underline opacity-90">学校管理</a>
           <span className="text-sm opacity-90">{user.email}</span>
         </div>
       </header>
