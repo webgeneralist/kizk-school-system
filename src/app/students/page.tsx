@@ -60,7 +60,10 @@ export default async function StudentsPage({
           <h1 className="text-lg font-bold">UGO学院 生徒管理システム</h1>
           <p className="text-xs opacity-80">KIZK.jp 学院支援システム（Supabase版）</p>
         </div>
-        <span className="text-sm opacity-90">{user.email}</span>
+        <div className="flex items-center gap-4">
+          <a href="/attendance" className="text-sm underline opacity-90">出欠管理</a>
+          <span className="text-sm opacity-90">{user.email}</span>
+        </div>
       </header>
 
       <main className="max-w-5xl mx-auto p-6">
