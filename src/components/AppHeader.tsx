@@ -1,3 +1,5 @@
+import { logout } from "@/app/logout/actions";
+
 const NAV_LINKS: { href: string; label: string }[] = [
   { href: "/students", label: "生徒一覧" },
   { href: "/attendance", label: "出欠管理" },
@@ -34,7 +36,14 @@ export default function AppHeader({
           <h1 className="text-lg font-bold">{title}</h1>
           <p className="text-xs opacity-80">KIZK.jp 学院支援システム（Supabase版）</p>
         </div>
-        {userEmail && <span className="text-sm opacity-90">{userEmail}</span>}
+        <div className="flex items-center gap-4">
+          {userEmail && <span className="text-sm opacity-90">{userEmail}</span>}
+          <form action={logout}>
+            <button type="submit" className="text-sm underline opacity-90 hover:opacity-100">
+              ログアウト
+            </button>
+          </form>
+        </div>
       </div>
       <nav className="px-6 pb-2 flex flex-wrap gap-x-4 gap-y-1 text-xs">
         {NAV_LINKS.map((l) => (

@@ -111,12 +111,20 @@ export default async function StudentsPage({
             </button>
           </form>
 
-          <a
-            href="/students/new"
-            className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-md px-4 py-1.5 text-sm font-medium hover:opacity-90"
-          >
-            + 新規登録
-          </a>
+          <div className="flex gap-2">
+            <a
+              href="/api/export"
+              className="border border-gray-300 rounded-md px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
+            >
+              ↓ エクスポート
+            </a>
+            <a
+              href="/students/new"
+              className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-md px-4 py-1.5 text-sm font-medium hover:opacity-90"
+            >
+              + 新規登録
+            </a>
+          </div>
         </div>
 
         {error && (
