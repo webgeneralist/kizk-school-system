@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 本番データ投入用SQL・CSV（個人情報を含むためgit管理外。Supabase SQL Editor/Table Editorで直接使用）
+/supabase/seed_local/
