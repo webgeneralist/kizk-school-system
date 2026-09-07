@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { setAttendance } from "./actions";
+import AppHeader from "@/components/AppHeader";
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -49,12 +50,7 @@ export default async function AttendancePage({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-bold">出欠管理</h1>
-        <a href="/students" className="text-sm underline opacity-90">
-          生徒一覧に戻る
-        </a>
-      </header>
+      <AppHeader title="出欠管理" currentPath="/attendance" userEmail={user.email} />
 
       <main className="max-w-4xl mx-auto p-6">
         <div className="flex items-center justify-between mb-4">

@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createEvent } from "./actions";
 import EventRow from "./EventRow";
+import AppHeader from "@/components/AppHeader";
 
 const CATEGORIES = ["休校日", "行事", "定期テスト", "長期休暇", "お知らせ", "その他"];
 
@@ -22,10 +23,7 @@ export default async function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-bold">カレンダー（休校日・行事）</h1>
-        <a href="/students" className="text-sm underline opacity-90">生徒一覧に戻る</a>
-      </header>
+      <AppHeader title="カレンダー（休校日・行事）" currentPath="/calendar" userEmail={user.email} />
 
       <main className="max-w-4xl mx-auto p-6 space-y-6">
         <div className="bg-white rounded-lg shadow overflow-x-auto">

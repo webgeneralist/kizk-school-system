@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { deleteStudent } from "./actions";
 import DeleteButton from "./DeleteButton";
+import AppHeader from "@/components/AppHeader";
 
 export default async function StudentsPage({
   searchParams,
@@ -55,19 +56,7 @@ export default async function StudentsPage({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
-        <div>
-          <h1 className="text-lg font-bold">UGO学院 生徒管理システム</h1>
-          <p className="text-xs opacity-80">KIZK.jp 学院支援システム（Supabase版）</p>
-        </div>
-        <div className="flex items-center gap-4">
-          <a href="/attendance" className="text-sm underline opacity-90">出欠管理</a>
-          <a href="/schools" className="text-sm underline opacity-90">学校管理</a>
-          <a href="/calendar" className="text-sm underline opacity-90">カレンダー</a>
-          <a href="/users" className="text-sm underline opacity-90">スタッフ管理</a>
-          <span className="text-sm opacity-90">{user.email}</span>
-        </div>
-      </header>
+      <AppHeader title="UGO学院 生徒管理システム" currentPath="/students" userEmail={user.email} />
 
       <main className="max-w-5xl mx-auto p-6">
         <div className="grid grid-cols-3 gap-4 mb-6">

@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createStaffProfile } from "./actions";
 import StaffRow from "./StaffRow";
+import AppHeader from "@/components/AppHeader";
 
 export default async function UsersPage() {
   const supabase = await createClient();
@@ -17,10 +18,7 @@ export default async function UsersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-bold">スタッフ管理</h1>
-        <a href="/students" className="text-sm underline opacity-90">生徒一覧に戻る</a>
-      </header>
+      <AppHeader title="スタッフ管理" currentPath="/users" userEmail={user.email} />
 
       <main className="max-w-4xl mx-auto p-6 space-y-6">
         <div className="bg-amber-50 border border-amber-200 text-amber-800 text-sm rounded-lg px-4 py-3">
